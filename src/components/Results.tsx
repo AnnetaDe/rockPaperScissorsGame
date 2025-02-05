@@ -1,9 +1,7 @@
-import { FaAngry } from "react-icons/fa";
 import { useAppSelector } from "../redux/hooks";
 import { selectGameResult } from "../redux/selectors";
 import { HiOutlineEmojiSad } from "react-icons/hi";
 import { CiFaceMeh, CiFaceSmile } from "react-icons/ci";
-import { div } from "framer-motion/client";
 
 export const Results = () => {
 

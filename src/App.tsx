@@ -26,9 +26,9 @@ function App() {
     bg-pink-500
 
 
-    sm:grid-flow-row gap-2
+   
 
-    md:grid-flow-col gap-2
+ 
   ">
 
         {
