@@ -35,7 +35,7 @@ export const Game = () => {
             <Scores />
 
 
-            <div className="text-5xl ">Play...</div>
+            <div className="text-5xl my-4 ">Play...</div>
             <motion.ul
                 className="text-2xl sm:text-4xl flex flex-wrap justify-center items-center gap-4 mt-4 mb-4 "
                 variants={{
