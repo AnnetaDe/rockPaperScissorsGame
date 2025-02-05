@@ -1,4 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { v4 as uuidv4 } from "uuid";
 
 
 export interface IChoices {
@@ -11,6 +12,7 @@ export interface IPlayer {
 }
 
 export interface IGameResult {
+    id: string;
     user: IPlayer;
     computer: IPlayer;
     result?: string;
@@ -37,7 +39,7 @@ const initialState: IGameState = {
         "2": "paper",
         "3": "scissors",
     },
-    gameResult: { user: { choice: '', score: 0 }, computer: { choice: '', score: 0 }, result: "" },
+    gameResult: { id: uuidv4(), user: { choice: '', score: 0 }, computer: { choice: '', score: 0 }, result: "" },
     sessionResults: [],
     showResults: false,
 };
@@ -51,7 +53,7 @@ const gameSlice = createSlice({
             state.startGame = true;
 
             state.
-                gameResult = { user: { choice: '', score: 0 }, computer: { choice: '', score: 0 }, result: "" };
+                gameResult = { id: uuidv4(), user: { choice: '', score: 0 }, computer: { choice: '', score: 0 }, result: "" };
         },
 
 
@@ -70,11 +72,12 @@ const gameSlice = createSlice({
 
             const getGameResult = (userChoice: string, computerChoice: string): IGameResult => {
                 if (userChoice === computerChoice) {
-                    return { user: { choice: displayUserChoice, score: 0 }, computer: { choice: displayComputerChoice, score: 0 }, result: "Draw", reason: "It's a tie!" };
+                    return { id: uuidv4(), user: { choice: displayUserChoice, score: 0 }, computer: { choice: displayComputerChoice, score: 0 }, result: "Draw", reason: "It's a tie!" };
                 }
 
                 if (win[userChoice].beats === computerChoice) {
                     return {
+                        id: uuidv4(),
                         user: { choice: displayUserChoice, score: 1 },
                         computer: { choice: displayComputerChoice, score: 0 },
                         result: "You won!",
@@ -83,6 +86,7 @@ const gameSlice = createSlice({
                 }
 
                 return {
+                    id: uuidv4(),
                     user: { choice: displayUserChoice, score: 0 },
                     computer: { choice: displayComputerChoice, score: 1 },
                     result: "You lost!",
@@ -98,7 +102,7 @@ const gameSlice = createSlice({
 
         hideResults: state => {
             state.showResults = false;
-            state.gameResult = { user: { choice: '', score: 0 }, computer: { choice: '', score: 0 }, result: "" };
+            state.gameResult = { id: '', user: { choice: '', score: 0 }, computer: { choice: '', score: 0 }, result: "" };
 
         },
         showResultsModal: (state, action: PayloadAction<boolean>) => {
@@ -106,7 +110,7 @@ const gameSlice = createSlice({
         },
 
         resetGame: state => {
-            state.gameResult = { user: { choice: '', score: 0 }, computer: { choice: '', score: 0 }, result: "" };
+            state.gameResult = { id: '', user: { choice: '', score: 0 }, computer: { choice: '', score: 0 }, result: "" };
             state.sessionResults = [];
             state.showResults = false;
 
@@ -114,7 +118,7 @@ const gameSlice = createSlice({
         setGameOver: state => {
             state.startGame = false;
             state.showResults = false;
-            state.gameResult = { user: { choice: '', score: 0 }, computer: { choice: '', score: 0 }, result: "" };
+            state.gameResult = { id: '', user: { choice: '', score: 0 }, computer: { choice: '', score: 0 }, result: "" };
             state.sessionResults = [];
 
 

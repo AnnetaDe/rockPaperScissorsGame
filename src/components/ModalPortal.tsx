@@ -16,6 +16,9 @@ const ModalPortal: React.FC<ModalPortalProps> = ({ title, children }) => {
     const dispatch = useAppDispatch();
 
     useEffect(() => {
+        const timer = setTimeout(() => {
+            dispatch(showResultsModal(false));
+        }, 2000);
         const closeOnEscape = (e: KeyboardEvent) => {
             if (e.key === 'Escape') {
                 dispatch(showResultsModal(false));
@@ -23,8 +26,10 @@ const ModalPortal: React.FC<ModalPortalProps> = ({ title, children }) => {
         };
         document.addEventListener('keydown', closeOnEscape);
         return () => {
+            clearTimeout(timer);
             document.removeEventListener('keydown', closeOnEscape);
         };
+
     }, [dispatch]);
 
     if (!modalRoot) return null;
@@ -49,8 +54,10 @@ const ModalPortal: React.FC<ModalPortalProps> = ({ title, children }) => {
 
 
 
+
+
                     <button
-                        className="absolute top-3 right-3 text-gray-600 hover:text-black"
+                        className="absolute top-3 right-3 text-gray-600 hover:text-gray-800"
                         onClick={() => dispatch(showResultsModal(false))}
                     >
                         ✖

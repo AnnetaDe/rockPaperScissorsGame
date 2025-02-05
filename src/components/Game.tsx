@@ -29,7 +29,7 @@ export const Game = () => {
 
     return (
         <motion.div className="max-w-full mx-auto border p-4 sm:p-6 rounded-lg shadow-md text-center">
-            <div className="text-4xl bold-fancy">Play...</div>
+            <div className="text-4xl">Play...</div>
 
             <motion.ul
                 className="text-2xl sm:text-4xl flex flex-wrap justify-center items-center gap-6 mt-4 mb-4"
@@ -47,7 +47,7 @@ export const Game = () => {
                             }}>
                                 <div className="bg-dots min-h-[60dvh] flex items-center justify-center">
                                     <motion.button
-                                        className=" p-4 bg-lime-400 text-white rounded-lg shadow-md hover:bg-fuchsia-800 text-6xl btn-grad"
+                                        className=" p-4  text-white rounded-lg shadow-md text-6xl btn-grad  "
                                         onClick={() => dispatch(playGame(parseInt(key)))}
                                         whileHover={{ scale: 1.2 }}
                                         whileTap={{ scale: 0.8 }}

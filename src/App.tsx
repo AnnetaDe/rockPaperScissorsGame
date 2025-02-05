@@ -16,11 +16,17 @@ function App() {
     <>
       <div className=" grid grid-flow-col gap-4 max-w-7xl bg-pink-500   mx-auto min-h-dvh overflow-hidden items-center justify-center">
 
+        {
+          !startGame && sessionResultsLength === 0 &&
+          <Start />
+
+        }
 
         {
-          !startGame &&
-          <Start />
+          !startGame && sessionResultsLength > 0 &&
+          <Game />
         }
+
         {
           startGame &&
           <Game />

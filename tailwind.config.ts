@@ -9,14 +9,10 @@ const config: Config = {
   ],
   theme: {
     extend: {
-      fontFamily: {
-        fancy: ['"Rubik Doodle Shadow"', "cursive"],
-        boldFancy: ['"Anton"', "sans-serif"],
-      },
+      
     },
   },
   plugins: [
-    tailwindScrollbar({nocompatible: true}),
    
   ],
 }
