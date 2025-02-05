@@ -15,7 +15,7 @@ function App() {
   return (
     <>
       <div className="
-    grid
+    flex
     items-center
     justify-center
     gap-4
@@ -24,6 +24,7 @@ function App() {
     min-h-[100dvh]
     overflow-hidden
     bg-pink-500
+    sm: flex-wrap
 
 
    
