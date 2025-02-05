@@ -34,11 +34,22 @@ ul {
 
 html,
 body {
+
   height: 100dvh;
   overflow: hidden;
-  /* font-family: 'Rubik Doodle Shadow', cursive; */
+}
+
+@media screen and (max-width: 768px) {
+
+  html,
+  body {
+    height: 100vh;
+    overflow: auto;
+  }
 
 }
+
+
 
 .boldFancy {
   font-family: 'Anton', sans-serif;

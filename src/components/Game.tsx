@@ -28,11 +28,12 @@ export const Game = () => {
 
 
     return (
-        <motion.div className="max-w-full mx-auto border p-4 sm:p-6 rounded-lg shadow-md text-center">
-            <div className="text-4xl">Play...</div>
+        <motion.div className="max-w-full content-center mx-auto p-4 sm:p-2 rounded-md text-center  min-h-[100dvh]
+ ">
+            <div className="text-5xl ">Play...</div>
 
             <motion.ul
-                className="text-2xl sm:text-4xl flex flex-wrap justify-center items-center gap-6 mt-4 mb-4"
+                className="text-2xl sm:text-4xl flex flex-wrap justify-center items-center gap-4 mt-4 mb-4 "
                 variants={{
                     hidden: { opacity: 0 },
                     visible: { opacity: 1, transition: { staggerChildren: 0.1 } }
@@ -45,9 +46,9 @@ export const Game = () => {
                                 hidden: { opacity: 0, y: 20 },
                                 visible: { opacity: 1, y: 0, transition: { duration: 0.3 } }
                             }}>
-                                <div className="bg-dots min-h-[60dvh] flex items-center justify-center">
+                                <div className="bg-dots min-h-[20dvh] flex items-center justify-center sm: w-30 rounded-lg shadow-md ">
                                     <motion.button
-                                        className=" p-4  text-white rounded-lg shadow-md text-6xl btn-grad  "
+                                        className=" p-4  text-white rounded-lg shadow-md text-6xl btn-grad "
                                         onClick={() => dispatch(playGame(parseInt(key)))}
                                         whileHover={{ scale: 1.2 }}
                                         whileTap={{ scale: 0.8 }}

@@ -1,6 +1,8 @@
+import { FaRegGrinWink } from "react-icons/fa";
 import { useAppSelector } from "../redux/hooks"
 import { selectSessionResults } from "../redux/selectors"
 import { motion, AnimatePresence } from "framer-motion";
+import { HiOutlineEmojiSad } from "react-icons/hi";
 
 
 export const SessionResults = () => {
@@ -8,22 +10,25 @@ export const SessionResults = () => {
     console.log(sessionResults)
 
     return (
-        <div className=" min-h-dvh pl-2 py-4 text-gray-700">
-            <h2 className="text-xl font-semibold mb-4">Session Results</h2>
+        <div className=" min-h-dvh px-2 py-4 text-gray-700">
+            <h2 className="text-4xl font-semibold mb-4">Session Results</h2>
 
-            <ul className="h-[90dvh] overflow-y-auto  bg-white p-4 rounded-lg divide-y divide-gray-200 text-xs scrollable-list">
+            <ul className="h-[90dvh] overflow-y-auto   p-4 rounded-lg  text-xs scrollable-list  opacity-70">
                 <AnimatePresence>
 
                     {
                         sessionResults.map((result) => {
                             return (
-                                <motion.li key={result.id} className="mb-2 p-3 bg-gray-100 rounded-lg " initial={{ opacity: 0, y: 20 }}
+                                <motion.li key={result.id} className="mb-2 p-3 bg-gray-100 rounded-lg max-w-sm" initial={{ opacity: 0, y: 20 }}
                                     animate={{ opacity: 1, y: 0 }}
                                     exit={{ opacity: 0, y: -20 }}
                                     transition={{ duration: 1 }}>
-                                    <div>
-                                        {result.result === "You won!" ? <p className="text-green-500"><FaRegGrinTongueWink />
-You Won!</p> : result.result === "You lost!" ? <p className="text-red-500">You Lost!</p> : <p className="text-yellow-500">It's a draw! </p>}
+                                    <div className="text-xs ">
+                                        {result.result === "You won!" ? <div className="text-purple-600 flex items-center gap-1">
+                                            <span><FaRegGrinWink />
+                                            </span>
+                                            You Won!</div> : result.result === "You lost!" ? <div className="text-sky-700 flex items-center gap-1 "><span><HiOutlineEmojiSad /></span>You Lost!
+                                            </div> : <p className="text-lime-600">It's a draw! </p>}
 
                                         <p>My Choice: {result.computer.choice}</p>
                                         <p>Your Choice: {result.user.choice}</p>

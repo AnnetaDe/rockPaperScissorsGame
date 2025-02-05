@@ -14,7 +14,22 @@ function App() {
 
   return (
     <>
-      <div className=" grid grid-flow-col gap-4 max-w-7xl bg-pink-500   mx-auto min-h-dvh overflow-hidden items-center justify-center">
+      <div className="
+    grid
+    items-center
+    justify-center
+    gap-4
+    max-w-7xl
+    mx-auto
+    min-h-[100dvh]
+    overflow-hidden
+    bg-pink-500
+
+
+    sm:grid-flow-row gap-2
+
+    md:grid-flow-col gap-2
+  ">
 
         {
           !startGame && sessionResultsLength === 0 &&
