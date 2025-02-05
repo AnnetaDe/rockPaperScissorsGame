@@ -14,27 +14,32 @@ export interface IGameResult {
     user: IPlayer;
     computer: IPlayer;
     result?: string;
+    reason?: string;
 }
 
 
 export interface IGameState {
+    startGame: boolean;
     choices: IChoices;
-
+    userChoice: string;
+    computerChoice: string;
     gameResult: IGameResult | null;
     sessionResults: IGameResult[];
-    gameOver: boolean;
+    showResults: boolean;
 }
 
 const initialState: IGameState = {
+    startGame: false,
+    userChoice: "",
+    computerChoice: "",
     choices: {
         "1": "rock",
         "2": "paper",
         "3": "scissors",
     },
-
     gameResult: { user: { choice: '', score: 0 }, computer: { choice: '', score: 0 }, result: "" },
     sessionResults: [],
-    gameOver: false,
+    showResults: false,
 };
 
 
@@ -42,55 +47,81 @@ const gameSlice = createSlice({
     name: 'game',
     initialState,
     reducers: {
+        setStartGame: state => {
+            state.startGame = true;
+
+            state.
+                gameResult = { user: { choice: '', score: 0 }, computer: { choice: '', score: 0 }, result: "" };
+        },
+
+
+
         playGame: (state, action: PayloadAction<number>) => {
-            const computerChoice = Math.floor(Math.random() * 3);
-            const userChoice = action.payload;
-            const displayUserChoice = state.choices[userChoice.toString()];
-            const displayComputerChoice = state.choices[computerChoice.toString()];
-            const evaluateWinner = (userChoice: number, computerChoice: number) => {
-                const gameResult: IGameResult = { user: { choice: displayUserChoice, score: 0 }, computer: { choice: displayComputerChoice, score: 0 }, result: "" };
+            const computerChoice = Math.floor(Math.random() * 3 + 1).toString();
+            const userChoice = action.payload.toString();
+
+            const displayUserChoice = state.choices[userChoice];
+            const displayComputerChoice = state.choices[computerChoice];
+            const win: { [key: string]: { beats: string; reason: string } } = {
+                "1": { beats: "3", reason: "Rock crushes Scissors" },
+                "2": { beats: "1", reason: "Paper covers Rock" },
+                "3": { beats: "2", reason: "Scissors cuts Paper" }
+            };
+
+            const getGameResult = (userChoice: string, computerChoice: string): IGameResult => {
                 if (userChoice === computerChoice) {
-                    gameResult.user.choice = displayUserChoice;
-                    gameResult.computer.choice = displayComputerChoice;
-                    gameResult.result = "draw";
-                } else if (userChoice === 1 && computerChoice === 3) {
-                    gameResult.user.choice = displayUserChoice;
-                    gameResult.computer.choice = displayComputerChoice;
-                    gameResult.result = "win";
-                    gameResult.user.score = 1;
-                } else if (userChoice === 2 && computerChoice === 1) {
-                    gameResult.user.choice = displayUserChoice;
-                    gameResult.computer.choice = displayComputerChoice;
-                    gameResult.result = "win";
-                    gameResult.user.score = 1;
-                } else if (userChoice === 3 && computerChoice === 2) {
-                    gameResult.user.choice = displayUserChoice;
-                    gameResult.computer.choice = displayComputerChoice;
-                    gameResult.result = "win";
-                    gameResult.user.score = 1;
-                } else {
-                    gameResult.user.choice = displayUserChoice;
-                    gameResult.computer.choice = displayComputerChoice;
-                    gameResult.result = "lose";
-                    gameResult.computer.score = 1;
+                    return { user: { choice: displayUserChoice, score: 0 }, computer: { choice: displayComputerChoice, score: 0 }, result: "Draw", reason: "It's a tie!" };
                 }
-                return gameResult;
 
-            }
-            state.gameResult = evaluateWinner(userChoice, computerChoice);
-            state.sessionResults.push(state.gameResult);
+                if (win[userChoice].beats === computerChoice) {
+                    return {
+                        user: { choice: displayUserChoice, score: 1 },
+                        computer: { choice: displayComputerChoice, score: 0 },
+                        result: "You won!",
+                        reason: win[userChoice].reason
+                    };
+                }
 
+                return {
+                    user: { choice: displayUserChoice, score: 0 },
+                    computer: { choice: displayComputerChoice, score: 1 },
+                    result: "You lost!",
+                    reason: win[computerChoice].reason
+                };
+            };
 
+            const gameResult = getGameResult(userChoice, computerChoice);
+            state.gameResult = gameResult;
+            state.sessionResults.unshift(gameResult);
+            state.showResults = true;
         },
 
+        hideResults: state => {
+            state.showResults = false;
+            state.gameResult = { user: { choice: '', score: 0 }, computer: { choice: '', score: 0 }, result: "" };
+
+        },
+        showResultsModal: (state, action: PayloadAction<boolean>) => {
+            state.showResults = action.payload;
+        },
+
+        resetGame: state => {
+            state.gameResult = { user: { choice: '', score: 0 }, computer: { choice: '', score: 0 }, result: "" };
+            state.sessionResults = [];
+            state.showResults = false;
+
+        },
         setGameOver: state => {
-            state.gameOver = true;
+            state.startGame = false;
+            state.showResults = false;
+            state.gameResult = { user: { choice: '', score: 0 }, computer: { choice: '', score: 0 }, result: "" };
+            state.sessionResults = [];
+
+
         },
-
-
-
     }
+
 });
 
-export const { setGameOver, playGame } = gameSlice.actions;
+export const { setGameOver, playGame, setStartGame, resetGame, hideResults, showResultsModal } = gameSlice.actions;
 export const gameReducer = gameSlice.reducer;

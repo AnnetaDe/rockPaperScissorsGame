@@ -7,8 +7,8 @@ import { gameReducer } from "./gameSlice";
 
 
 const gamePersistConfig: PersistConfig<ReturnType<typeof gameReducer>> = {
-    key: 'gameResult',
-    whitelist: ['gameResult'],
+    key: 'sessionResults',
+    whitelist: ['sessionResults'],
     storage,
 };
 const persistedGameReducer = persistReducer(gamePersistConfig, gameReducer);
@@ -22,7 +22,8 @@ const store = configureStore({
     middleware: getDefaultMiddleware => getDefaultMiddleware({
         serializableCheck: {
             ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
-        }
+        },
+        devTools: true,
     }),
 
 
