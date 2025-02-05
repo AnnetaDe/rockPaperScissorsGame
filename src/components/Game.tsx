@@ -6,6 +6,7 @@ import ModalPortal from "./ModalPortal";
 import { Results } from "./Results";
 import { motion } from "framer-motion";
 import { FaHandPaper, FaHandScissors, FaHandRock } from "react-icons/fa";
+import { Scores } from "./Scores";
 
 
 export const Game = () => {
@@ -29,9 +30,12 @@ export const Game = () => {
 
     return (
         <motion.div className="max-w-full content-center mx-auto p-4 sm:p-2 rounded-md text-center  min-h-[100dvh]
+       
  ">
-            <div className="text-5xl ">Play...</div>
+            <Scores />
 
+
+            <div className="text-5xl ">Play...</div>
             <motion.ul
                 className="text-2xl sm:text-4xl flex flex-wrap justify-center items-center gap-4 mt-4 mb-4 "
                 variants={{
@@ -39,6 +43,7 @@ export const Game = () => {
                     visible: { opacity: 1, transition: { staggerChildren: 0.1 } }
                 }}
             >
+
                 {
                     Object.entries(choices).map(([key, value]) => {
                         return (

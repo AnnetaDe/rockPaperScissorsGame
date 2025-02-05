@@ -115,6 +115,8 @@ const gameSlice = createSlice({
             state.showResults = false;
 
         },
+
+
         setGameOver: state => {
             state.startGame = false;
             state.showResults = false;

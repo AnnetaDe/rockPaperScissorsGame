@@ -10,10 +10,10 @@ export const SessionResults = () => {
     console.log(sessionResults)
 
     return (
-        <div className=" min-h-dvh px-2 py-4 text-gray-700">
-            <h2 className="text-4xl font-semibold mb-4">Session Results</h2>
+        <div className=" min-h-dvh px-2 py-4 bg-dots bg-cover">
+            <h2 className="text-xl font-semibold mb-4">Results</h2>
 
-            <ul className="h-[90dvh] overflow-y-auto   p-4 rounded-lg  text-xs scrollable-list  opacity-70">
+            <ul className="h-[90dvh] overflow-y-auto   p-2 rounded-lg  text-xs scrollable-list  opacity-70 ">
                 <AnimatePresence>
 
                     {

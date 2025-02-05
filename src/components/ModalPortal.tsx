@@ -43,25 +43,13 @@ const ModalPortal: React.FC<ModalPortalProps> = ({ title, children }) => {
                 onClick={() => dispatch(showResultsModal(false))}
             >
                 <motion.div
-                    className="border rounded-lg shadow-lg p-6 relative w-96 max-w-full"
+                    className="border border-gray-600 rounded-lg shadow-lg p-6 relative w-96 max-w-full"
                     onClick={(e) => e.stopPropagation()}
                     initial={{ opacity: 0, scale: 0.9 }}
                     animate={{ opacity: 1, scale: 1 }}
                     exit={{ opacity: 0, scale: 0.9 }}
                     transition={{ duration: 0.3, ease: "easeOut" }}
                 >
-
-
-
-
-
-
-                    <button
-                        className="absolute top-3 right-3 text-gray-600 hover:text-gray-800"
-                        onClick={() => dispatch(showResultsModal(false))}
-                    >
-                        ✖
-                    </button>
 
 
                     <h2 className="text-xl font-semibold mb-4">{title}</h2>

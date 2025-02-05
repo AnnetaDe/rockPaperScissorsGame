@@ -6,10 +6,13 @@ export const Finish = () => {
 
 
     return (
-        <div>
-            <button onClick={() => { dispatch(() => dispatch(setGameOver())) }} className="  m-2 p-2 border border-white text-white rounded-lg  hover:bg-pink-600">
+        <div className="group relative flex-col items-center justify-center">
+            <button onClick={() => { dispatch(() => dispatch(setGameOver())) }} className=" p-2 border border-white text-white rounded-lg  hover:bg-pink-600">
                 Finish
             </button>
+            <div className="absolute hidden group-hover:block p-1 text-xs text-white bg-gray-700 rounded bottom-full mb-1 whitespace-nowrap">
+                Finish the game and clear statistics
+            </div>
 
         </div>
     )

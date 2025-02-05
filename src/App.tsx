@@ -20,10 +20,11 @@ function App() {
     justify-center
     gap-4
     max-w-7xl
-    mx-auto
+    bg-pink-500
+  
     min-h-[100dvh]
     overflow-hidden
-    bg-pink-500
+
     sm: flex-wrap
 
 
