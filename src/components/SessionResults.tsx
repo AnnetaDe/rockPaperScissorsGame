@@ -10,16 +10,16 @@ export const SessionResults = () => {
     console.log(sessionResults)
 
     return (
-        <div className=" min-h-dvh px-2 py-4 bg-dots bg-cover">
+        <div className=" min-h-dvh px-6 py-4 bg-dots">
             <h2 className="text-xl font-semibold mb-4">Results</h2>
 
-            <ul className="h-[90dvh] overflow-y-auto   p-2 rounded-lg  text-xs scrollable-list  opacity-70 ">
+            <ul className="h-[90dvh] overflow-y-auto  min-w-full   p-2 rounded-lg  text-xs scrollable-list  opacity-90 sm: min-w-xxs">
                 <AnimatePresence>
 
                     {
                         sessionResults.map((result) => {
                             return (
-                                <motion.li key={result.id} className="mb-2 p-3 bg-gray-100 rounded-lg max-w-sm" initial={{ opacity: 0, y: 20 }}
+                                <motion.li key={result.id} className="mb-2 p-3 bg-gray-100 rounded-lg max-w-" initial={{ opacity: 0, y: 20 }}
                                     animate={{ opacity: 1, y: 0 }}
                                     exit={{ opacity: 0, y: -20 }}
                                     transition={{ duration: 1 }}>

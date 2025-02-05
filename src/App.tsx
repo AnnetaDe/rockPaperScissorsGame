@@ -15,12 +15,14 @@ function App() {
   return (
     <>
       <div className="
+      mx-auto
     flex
     items-center
     justify-center
     gap-4
     max-w-7xl
-    bg-pink-500
+    bg-gray-100
+
   
     min-h-[100dvh]
     overflow-hidden

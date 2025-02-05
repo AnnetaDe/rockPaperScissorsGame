@@ -7,7 +7,7 @@ export const Reset = () => {
     return (
         <div className="group relative flex-col items-center justify-center">
             <button
-                className=" p-2  border border-white text-white rounded-lg  hover:bg-pink-600"
+                className=" p-2  border-gray-700 text-white rounded-lg bg-pink-500 hover:bg-pink-600"
                 onClick={() => dispatch(resetGame())}
             >Reset </button>
             <div className="absolute hidden group-hover:block p-1 text-xs text-white bg-gray-700 rounded bottom-full mb-1 whitespace-nowrap">

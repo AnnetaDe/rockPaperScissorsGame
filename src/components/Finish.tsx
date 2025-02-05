@@ -7,10 +7,10 @@ export const Finish = () => {
 
     return (
         <div className="group relative flex-col items-center justify-center">
-            <button onClick={() => { dispatch(() => dispatch(setGameOver())) }} className=" p-2 border border-white text-white rounded-lg  hover:bg-pink-600">
+            <button onClick={() => { dispatch(() => dispatch(setGameOver())) }} className=" p-2  border-gray-700 text-white rounded-lg bg-pink-500  hover:bg-pink-600">
                 Finish
             </button>
-            <div className="absolute hidden group-hover:block p-1 text-xs text-white bg-gray-700 rounded bottom-full mb-1 whitespace-nowrap">
+            <div className="absolute hidden group-hover:block p-1 text-xs text-gray bg-gray-700 text-white rounded bottom-full mb-1 whitespace-nowrap">
                 Finish the game and clear statistics
             </div>
 
