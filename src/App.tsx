@@ -22,6 +22,7 @@ function App() {
     gap-4
     max-w-7xl
     bg-gray-100
+    
 
   
     min-h-[100dvh]
